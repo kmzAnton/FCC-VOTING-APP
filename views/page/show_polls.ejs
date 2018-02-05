@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/header %>
+    
+      <div class="container-fluid cont_show_polls">
+        <% if(!poll){ %>
+          <div class="for_alert_msg text-center">
+            <small class="alert alert-warning"><%= alert_msg.poll_page%></small>
+          </div>  
+        <%} else {%>
+        
+          <% if(aggregate===true){ %>
+            <table class="table text-center">
+              <tbody>
+                <tr>
+                  <th scope="row" class="text-left">Poll name</th>
+                 <% poll.forEach(item=>{ %>
+                   <th scope="col"><%= item.pollName%></td>
+                 <% }); %>
+                </tr>
+                
+                <tr>
+                  <th scope="row" class="text-left">Number of options</th>
+                  <% poll.forEach(item=>{ %>
+                    <td><%= item.pollOptions.length%></td>
+                  <% }); %>
+                </tr>
+                
+                <tr>
+                  <th scope="row" class="text-left">Total votes</th>
+                  <% poll.forEach(item=>{ var sum=0;%>
+                    <% item.pollOptions.forEach(elem=>{sum+=elem.count});%>
+                      <td><%= sum%></td>
+                  <% }); %>
+                </tr>
+              </tbody>
+            </table>
+          <% } %>
+        
+          <div class="row">
+
+            <% poll.forEach((item)=>{ %>
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= item.pollName %></h5>
+                    <p class="card-text"><%= item.shortDesc %></p>
+                    <a href="/poll/<%= item.pollName%>" class="btn btn-info">Vote</a>
+                    <% if(obj.user === item.creator && obj !== 'anonym'){ %>  
+                      <a href="/delete/<%= item.pollName%>" class="btn btn-danger">Delete poll</a>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+
+            <% }) %>
+
+          </div>
+        <%}%>
+    </div>
+    
+  </body>
+  
+</html>

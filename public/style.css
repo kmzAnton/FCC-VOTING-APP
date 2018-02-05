@@ -1,0 +1,103 @@
+.dd{
+  background-color: #f0ad4e;
+}
+
+#btn_poll_edit_form{
+  color: white;
+}
+
+#add_link{
+  text-decoration: none;
+}
+.btn_edit{
+  position: relative;
+  top: 0px;
+  left: 205px;
+}
+.btn_edit:hover{
+  color: white;
+}
+
+.alert {
+  color: tomato;
+}
+.disabled{
+   cursor: not-allowed;
+   pointer-events: none;
+}
+.for_alert_msg{
+  margin: 25px auto;
+  max-width: 500px;
+  min-width: 400px;
+}
+.arc path {
+  stroke: #fff;
+  stroke-width: 5px;
+}
+
+.header {
+  padding: 15px 25px;
+  width: 100%;
+  background-color: lightgray;
+}
+
+#cont_main_page {
+  margin-top: 35px;  
+  max-width: 1100px;
+}
+
+.col-xs-4{
+  max-width:300px;
+}
+.col-xs-8{
+  width:500px;
+}
+.cont_poll_page{
+  margin-top: 50px;
+  width: 850px;
+}
+
+.cont_show_polls{
+  margin-top: 50px;
+  max-width:1000px;
+}
+
+.card-text {
+  min-height: 75px;
+}
+.col-sm-4{
+  margin-bottom: 30px;
+}
+
+#btn_poll_form{
+  margin:0 auto;
+  min-width:200px;
+}
+
+.modal{
+  text-align: left;
+}
+
+
+
+.btn_main_page{
+  max-width:400px;
+}
+
+.form {
+  margin: 35px auto;
+  max-width: 300px;
+  padding: 15px;
+  border:1px solid lightgray;
+  border-radius:2px;
+}
+.btn_header{
+  color:white;
+  min-width:100px;
+  float:right;
+  margin-left: 20px;
+  margin-bottom: 3px;
+}
+.btn_header:hover{
+  color:white;
+}
