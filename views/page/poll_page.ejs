@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+    <script src="../../public/js_poll_page.js"></script>
+  </head>
+  <body>
+    <% include ../partials/header %>
+    
+    <% var exist = 0; poll.pollOptions.forEach((item)=>{if(item.votedUsers.includes(obj.user) && obj.user!='anonym'){exist++}}) %>
+    
+    <div class="container-fluid cont_poll_page">
+      <div class="row">
+         <div class="col-xs-4">
+           <%if(obj.user !== null){%>
+             <button class="btn btn-sm btn-outline-warning btn_edit" id="editPoll" type="button" data-toggle="modal" data-target="#editPolls">Add options</button>
+              <!----- Modal ----->
+              <div class="modal fade" id="editPolls" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit poll</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form method="post" action="/edit/<%= poll.pollName%>">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Poll title</label>
+                          <input readonly="readonly" value="<%= poll.pollName%>" type="text" name="pollTitle" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title...">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Short descrition</label>
+                          <input readonly="readonly" value="<%= poll.shortDesc%>"  type="text" name="shortDesc" class="form-control" id="shortDesc" placeholder="Description...">
+                          <small id="descHelp" class="form-text text-muted">Breifly, describe your poll.</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Option to add</label>
+                          <input type="text" name="options" class="form-control" id="optionToAdd" placeholder="e.g. Cat">
+                          <small id="tip" class="form-text text-muted">Write here one option, you want to add to poll</small>
+                        </div>
+                        <a id="add_link" href="/edit/<%= poll.pollName%>" ><button type="submit" class="btn btn-block btn-warning" id="btn_poll_edit_form">Add</button></a>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+           <% } %>
+           
+          <h2><%= poll.pollName %></h2>           
+          <span><%= poll.shortDesc %></span><br>
+           <% if(exist !== 0){%>
+            <small class="alert">You have already voted here...</small>
+           <% } %>
+          <ul class="list-group">
+           <% poll.pollOptions.forEach((item)=>{ %>
+           
+               <li class="list-group-item d-flex justify-content-between align-items-center">
+                 <%= item.optName%>
+                 <% if(obj.user == null){obj.user = "anonym"}%>
+                 <form method="post" action="/poll/<%=poll.pollName%>/vote/<%= item.optName%>/by/<%= obj.user%>">
+                   
+                   <% if(exist == 0){%>
+                     <button class="btn btn-xs btn-success vote_btn" id="submit_btn"> <%= item.count %> </button>
+                   <% } else {%>
+                     <button class="btn btn-xs btn-success vote_btn disabled"> <%= item.count %> </button>
+                   <% } %>
+                 </form>
+               </li>
+            
+           <% }) %>
+          </ul>
+           <div class="text-right small">Poll created by: <span class="badge badge-info"> <%= poll.creator %></span></div>
+        </div>
+        <div id="arc" class="col-xs-8">         
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="/js_poll_page.js"></script>
+    
+  </body>
+</html>

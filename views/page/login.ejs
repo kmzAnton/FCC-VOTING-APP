@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/header %>
+    <%if(alert_msg.signup !== ''){%>
+      <div class="for_alert_msg">
+        <small class="alert alert-danger"><%= alert_msg.signup %></small>
+      </div>
+    <% } %>
+    <div class="form">
+      <h2 class="text-center">Log in</h2>
+      <small class="alert"><%= alert_msg.login%></small>
+      <form method="post" action="/login">
+        <input class="form-control" name="username" type="text" placeholder="Username..." autofocus><br>
+        <input class="form-control" name="password" type="password" placeholder="Password..."><br>
+        <input type="submit" class="btn btn-block btn-success" value="Log in">
+      </form>
+    </div>
+    
+  </body>
+</html>

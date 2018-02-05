@@ -1,0 +1,80 @@
+<div class="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-xs-3">
+        <h3>Welcome <b><%= obj.user %> ! </b></h3>
+      </div>
+
+      <div class="col col-xs-8">
+        
+        <% if(obj.user !== undefined){ %>
+          <% if(obj.btn.logout == true){%>
+            <a href="/user/logout"><button class="btn btn-warning btn_header">Log out</button></a>
+          <% } %>
+        <%} else {%>
+        
+          <% if(obj.btn.signup === true){ %>
+            <button class="btn btn-warning btn_header" type="button" data-toggle="modal" data-target="#exampleModal">Sign up</button>
+            <!-- Modal Sign Up-->
+            <div class="modal fade" id="exampleModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Sign Up form</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form method="post" action="/user/signup">
+                        <small class="alert"><%= alert_msg.signup%></small>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Username</label>
+                          <input autofocus type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% } %>  
+        
+          <% if(obj.btn.login  === true){ %>
+
+            <div class="btn-group btn-group-warning btn_header" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-warning btn_header dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Log in
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a href="/login" class="dropdown-item" href="#">Local Login</a>
+                <a href="/auth/github/callback"class="dropdown-item" href="#">GitHub Login</a>
+              </div>
+            </div>  
+          
+          <% } %> 
+        <% } %>
+        
+        
+        <% if(obj.btn.home === true){ %>
+          <a href="/"><button class="btn btn-success btn_header">Home</button></a>
+        <% } %>
+        
+        
+        <% if(obj.btn.polls === true){ %>
+        
+        <a href="/show_polls"><button class="btn btn-info btn_header">Polls</button></a>
+        
+        <% } %>
+        
+        
+      </div>
+    </div>
+  </div>  
+</div>

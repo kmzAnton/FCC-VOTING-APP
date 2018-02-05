@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/header %>
+    <% if(alert_msg.create_poll !==''){ %>
+      <div class="for_alert_msg text-center">
+          <small class="alert alert-danger"><%= alert_msg.create_poll%></small>
+      </div>
+    <% } %>
+    <div class="container-fluid" id="cont_main_page">
+      <h1 class="text-center" id="fcc">freeCodeCamp</h1><br>
+      <ul>
+        <b>User Story:</b><br><br>
+        <li>As an authenticated user, I can keep my polls and come back later to access them. <span class="badge badge-success">&#9989</span></li>
+        <li>As an authenticated user, I can share my polls with my friends. <span class="badge badge-danger">&#10060</span></li>
+        <li>As an authenticated user, I can see the aggregate results of my polls. <span class="badge badge-success">&#9989</span></li>
+        <li>As an authenticated user, I can delete polls that I decide I don't want anymore. <span class="badge badge-success">&#9989</span></li>
+        <li>As an authenticated user, I can create a poll with any number of possible items. <span class="badge badge-success">&#9989</span></li>
+        <li>As an unauthenticated or authenticated user, I can see and vote on everyone's polls. <span class="badge badge-success">&#9989</span></li>
+        <li>As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.) <span class="badge badge-success">&#9989</span></li>
+        <li>As an authenticated user, if I don't like the options on a poll, I can create a new option. <span class="badge badge-success">&#9989</span></li>
+      </ul><br><br>
+      
+      <div class="text-center">
+        <% if(obj.user !== undefined){ %>
+          <a href="/myPolls/<%= obj.user%>"><button class="btn btn-lg btn-outline-success">My polls</button></a>
+          <button class="btn btn-outline-info btn-lg btn_main_page" id="createPoll" type="button" data-toggle="modal" data-target="#polls">Create a new poll</button>
+          <!-- Modal Polls-->
+          <div class="modal fade" id="polls" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Create a new poll</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <form method="post" action="/create_poll">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Poll title</label>
+                      <input autofocus type="text" name="pollTitle" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title...">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Short descrition</label>
+                      <input type="text" name="shortDesc" class="form-control" id="exampleInputPassword1" placeholder="Description...">
+                      <small id="descHelp" class="form-text text-muted">Breifly, describe your poll.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Poll's options</label>
+                      <textarea placeholder="e.g. cat, dog, raccoon" class="form-control" name = "options" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <small id="descripHelp" class="form-text text-muted">Type the poll's options separated by comma.</small>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-info" id="btn_poll_form">Submit</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+        </div>
+        <% } %>
+      </div>
+      
+    </div>
+    
+  </body>
+</html>
